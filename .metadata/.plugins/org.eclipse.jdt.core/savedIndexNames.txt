@@ -1,10 +1,10 @@
 INDEX VERSION 1.131+/home/beatrizkuriki/ws-Spring/desafio-tecnico/.metadata/.plugins/org.eclipse.jdt.core
 233290762.index
+1233029093.index
 2278042100.index
 3183509830.index
-1233029093.index
-2821997696.index
 1237839429.index
+2821997696.index
 1670817922.index
 1654345270.index
 1845395813.index
@@ -16,15 +16,15 @@ INDEX VERSION 1.131+/home/beatrizkuriki/ws-Spring/desafio-tecnico/.metadata/.plu
 112699079.index
 4094402133.index
 39773781.index
+668805964.index
 2119360264.index
-1407315794.index
 531802717.index
 1702550689.index
 3410988833.index
 1352703720.index
-668805964.index
-223241809.index
+1407315794.index
 3576833797.index
+223241809.index
 3999658493.index
 4182489432.index
 872430743.index
@@ -40,8 +40,8 @@ INDEX VERSION 1.131+/home/beatrizkuriki/ws-Spring/desafio-tecnico/.metadata/.plu
 3624189018.index
 3945118009.index
 3270023576.index
-2388130903.index
 2243620248.index
+2388130903.index
 3385320933.index
 2099382059.index
 3860555340.index
@@ -66,7 +66,6 @@ INDEX VERSION 1.131+/home/beatrizkuriki/ws-Spring/desafio-tecnico/.metadata/.plu
 2267160508.index
 2576554074.index
 1657534911.index
-1482785682.index
 2497450045.index
 194624783.index
 516085659.index
