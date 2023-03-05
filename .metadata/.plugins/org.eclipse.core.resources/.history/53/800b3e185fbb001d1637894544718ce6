@@ -1,0 +1,5 @@
+package com.sesatech.apirickymorty.services;
+
+public class LocationService {
+
+}

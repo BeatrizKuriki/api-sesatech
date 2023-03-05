@@ -1,0 +1,5 @@
+package com.sesatech.apirickymorty.resources;
+
+public class LocationResource {
+
+}
