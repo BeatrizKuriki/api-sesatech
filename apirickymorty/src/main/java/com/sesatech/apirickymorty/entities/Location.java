@@ -1,10 +1,13 @@
 package com.sesatech.apirickymorty.entities;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,7 +16,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "tb_location")
+@Table(name = "tb_locations")
 public class Location implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
@@ -23,9 +26,13 @@ public class Location implements Serializable{
 	private Long id;
 	private String name;
 	private String dimension;
+	
 	//private List<Character> residents;
+	
 	private String url;
-	//private LocalDateTime created = LocalDateTime.now();
+	
+	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+	private Instant created;
 	
 	
 	
@@ -33,15 +40,16 @@ public class Location implements Serializable{
 		
 	}
 
-	public Location(Long id, String name, String dimension, List<Character> residents, String url,
-			LocalDateTime created) {
+
+
+	public Location(Long id, String name, String dimension, String url, Instant created) {
 	
 		this.id = id;
 		this.name = name;
 		this.dimension = dimension;
 		//this.residents = residents;
 		this.url = url;
-		//this.created = created;
+		this.created = created;
 	}
 
 
@@ -82,16 +90,6 @@ public class Location implements Serializable{
 
 
 
-	//public List<Character> getResidents() {
-		//return residents;
-	//}
-
-
-
-	//public void setResidents(List<Character> residents) {
-		//this.residents = residents;
-	//}
-
 
 
 	public String getUrl() {
@@ -106,15 +104,21 @@ public class Location implements Serializable{
 
 
 
-	//public LocalDateTime getCreated() {
-		//return created;
-	//}
+	public Instant getCreated() {
+		return created;
+	}
+
+
+
+	public void setCreated(Instant created) {
+		this.created = created;
+	}
 
 
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		return Objects.hash(created, id);
 	}
 
 
@@ -128,11 +132,15 @@ public class Location implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Location other = (Location) obj;
-		return Objects.equals(id, other.id);
-	}	
+		return Objects.equals(created, other.created) && Objects.equals(id, other.id);
+	}
+
+
+
+	
+	
+	
 	
 
-
 }
-
 
