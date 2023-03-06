@@ -2,12 +2,19 @@ package com.sesatech.apirickymorty.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
 
@@ -24,12 +31,20 @@ public class Location implements Serializable{
 	private String dimension;
 	
 
-	//private List<String> residents;
+	
+	//@OneToMany(mappedBy = "character", cascade = CascadeType.ALL)
+	//private List<Character> residents = new ArrayList<>();
+	//@ElementCollection
+	//private Collection residents;
 	
 	private String url;
 	
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant created;
+	
+	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+	private Instant updated;
+	
 	
 	
 	
@@ -106,10 +121,22 @@ public class Location implements Serializable{
 	}
 
 
-
-	public void setCreated(Instant created) {
-		this.created = created;
+	public Instant getUpdated() {
+		return updated;
 	}
+	
+	@PrePersist
+	public void prePersist() {
+		created = Instant.now();
+	}
+	
+	@PreUpdate
+	public void preUpdate() {
+		updated = Instant.now();
+	}
+
+
+
 
 
 

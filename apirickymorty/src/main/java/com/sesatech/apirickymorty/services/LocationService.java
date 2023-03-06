@@ -7,12 +7,17 @@ import java.util.stream.Collectors;
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sesatech.apirickymorty.dto.LocationDTO;
 import com.sesatech.apirickymorty.entities.Location;
 import com.sesatech.apirickymorty.repositories.LocationRepository;
+import com.sesatech.apirickymorty.services.exceptions.DataBaseException;
 import com.sesatech.apirickymorty.services.exceptions.ResourceNotFoundException;
 
 @Service
@@ -22,10 +27,9 @@ public class LocationService {
 	private LocationRepository repository;
 	
 	@Transactional(readOnly = true)
-	public List<LocationDTO> findAll(){
-		List<Location> list = repository.findAll();
-		
-		return list.stream().map(elemento -> new LocationDTO(elemento)).collect(Collectors.toList());
+	public Page<LocationDTO> findAllPaged(PageRequest pageRequest){
+		Page<Location> list = repository.findAll(pageRequest);		
+		return list.map(elemento -> new LocationDTO(elemento));
 		}
 
 	@Transactional(readOnly = true)
@@ -41,8 +45,7 @@ public class LocationService {
 		Location entity = new Location();
 		entity.setName(dto.getName());
 		entity.setDimension(dto.getDimension());
-		entity.setUrl(dto.getUrl());
-		entity.setCreated(dto.getCreated());
+		entity.setUrl(dto.getUrl());		
 		entity = repository.save(entity);			
 		return new LocationDTO(entity);
 	}
@@ -53,8 +56,7 @@ public class LocationService {
 		Location entity = repository.getOne(id);
 		entity.setName(dto.getName());
 		entity.setDimension(dto.getDimension());
-		entity.setUrl(dto.getUrl());
-		entity.setCreated(dto.getCreated());
+		entity.setUrl(dto.getUrl());	
 		entity = repository.save(entity);		
 		return new LocationDTO(entity);
 		}
@@ -63,5 +65,19 @@ public class LocationService {
 			
 		}
 	
+	}
+
+	public void delete(Long id) {
+		try {
+		repository.deleteById(id);
+		}
+		catch (EmptyResultDataAccessException e) {
+			throw new ResourceNotFoundException("Id not found" + id);
+		}
+		catch (DataIntegrityViolationException e) {
+			throw new DataBaseException("Integrity violation");			
+		}
+		
+		
 	}
 }
