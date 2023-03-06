@@ -1,16 +1,17 @@
 package com.sesatech.apirickymorty.services;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
-
-import org.springframework.transaction.annotation.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.sesatech.apirickymorty.dto.LocationDTO;
 import com.sesatech.apirickymorty.entities.Location;
 import com.sesatech.apirickymorty.repositories.LocationRepository;
+import com.sesatech.apirickymorty.services.exceptions.EntityNotFoundException;
 
 @Service
 public class LocationService {
@@ -23,8 +24,13 @@ public class LocationService {
 		List<Location> list = repository.findAll();
 		
 		return list.stream().map(elemento -> new LocationDTO(elemento)).collect(Collectors.toList());
-		
-	
+		}
 
-}
+	@Transactional(readOnly = true)
+	public LocationDTO findById(Long id) {
+		Optional<Location> obj = repository.findById(id);
+		Location entity = obj.orElseThrow(()-> new EntityNotFoundException("Entity not found."));
+		return new LocationDTO(entity);		
+		
+	}
 }

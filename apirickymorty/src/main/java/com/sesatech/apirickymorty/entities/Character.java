@@ -59,7 +59,7 @@ public class Character implements Serializable{
 
 
 	public Character(String id, String name, StatusEnum status, String species, GenderEnum gender, String origin,
-			String imgUrl, Instant date) {
+			String imgUrl, Instant created) {
 		
 		this.id = id;
 		this.name = name;

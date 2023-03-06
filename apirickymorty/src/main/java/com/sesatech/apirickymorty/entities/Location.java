@@ -2,11 +2,7 @@ package com.sesatech.apirickymorty.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,7 +23,8 @@ public class Location implements Serializable{
 	private String name;
 	private String dimension;
 	
-	//private List<Character> residents;
+
+	//private List<String> residents;
 	
 	private String url;
 	
@@ -134,6 +131,7 @@ public class Location implements Serializable{
 		Location other = (Location) obj;
 		return Objects.equals(created, other.created) && Objects.equals(id, other.id);
 	}
+
 
 
 

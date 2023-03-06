@@ -29,7 +29,7 @@ public class CharacterDTO implements Serializable{
 	private String imgUrl;
 	
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
-	private Instant date;	
+	private Instant created;	
 	
 	private List<LocationDTO> locations = new ArrayList<>();
 	
@@ -38,7 +38,7 @@ public class CharacterDTO implements Serializable{
 
 
 	public CharacterDTO(String id, String name, StatusEnum status, String species, GenderEnum gender, String origin,
-			String imgUrl, Instant date) {
+			String imgUrl, Instant created) {
 		
 		this.id = id;
 		this.name = name;
@@ -47,9 +47,10 @@ public class CharacterDTO implements Serializable{
 		this.gender = gender;
 		this.origin = origin;
 		this.imgUrl = imgUrl;
-		this.date = date;
+		this.created = created;
 	}
 	
+
 
 
 
@@ -131,13 +132,13 @@ public class CharacterDTO implements Serializable{
 	}
 
 
-	public Instant getDate() {
-		return date;
+	public Instant getCreated() {
+		return created;
 	}
 
 
-	public void setDate(Instant date) {
-		this.date = date;
+	public void setCreated(Instant created) {
+		this.created = created;
 	}
 	
 	
