@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.sesatech.apirickymorty.dto.LocationDTO;
 import com.sesatech.apirickymorty.entities.Location;
 import com.sesatech.apirickymorty.repositories.LocationRepository;
-import com.sesatech.apirickymorty.services.exceptions.EntityNotFoundException;
+import com.sesatech.apirickymorty.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class LocationService {
@@ -29,7 +31,7 @@ public class LocationService {
 	@Transactional(readOnly = true)
 	public LocationDTO findById(Long id) {
 		Optional<Location> obj = repository.findById(id);
-		Location entity = obj.orElseThrow(()-> new EntityNotFoundException("Entity not found."));
+		Location entity = obj.orElseThrow(()-> new ResourceNotFoundException("Entity not found."));
 		return new LocationDTO(entity);		
 		
 	}
@@ -43,5 +45,23 @@ public class LocationService {
 		entity.setCreated(dto.getCreated());
 		entity = repository.save(entity);			
 		return new LocationDTO(entity);
+	}
+
+	@Transactional
+	public LocationDTO update(Long id, LocationDTO dto) {
+		try {
+		Location entity = repository.getOne(id);
+		entity.setName(dto.getName());
+		entity.setDimension(dto.getDimension());
+		entity.setUrl(dto.getUrl());
+		entity.setCreated(dto.getCreated());
+		entity = repository.save(entity);		
+		return new LocationDTO(entity);
+		}
+		catch(EntityNotFoundException e) {
+			throw new ResourceNotFoundException("Id not found" + id);
+			
+		}
+	
 	}
 }
