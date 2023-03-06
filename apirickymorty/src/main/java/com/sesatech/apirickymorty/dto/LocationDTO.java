@@ -1,28 +1,15 @@
-package com.sesatech.apirickymorty.entities;
+package com.sesatech.apirickymorty.dto;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
+import com.sesatech.apirickymorty.entities.Location;
 
-@Entity
-@Table(name = "tb_location")
-public class Location implements Serializable{
+public class LocationDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
 	private String dimension;
@@ -35,29 +22,31 @@ public class Location implements Serializable{
 	private Instant created;
 	
 	
-	
-	public Location() {
+	LocationDTO(){
 		
 	}
 
 
-
-	public Location(Long id, String name, String dimension, String url, Instant created) {
-	
+	public LocationDTO(Long id, String name, String dimension, String url, Instant created) {
+		
 		this.id = id;
 		this.name = name;
 		this.dimension = dimension;
-		//this.residents = residents;
 		this.url = url;
 		this.created = created;
 	}
 
-
+	public LocationDTO(Location entity) {
+		this.id = entity.getId();
+		this.name =entity.getName();
+		this.dimension = entity.getDimension();
+		this.url = entity.getUrl();
+		this.created = entity.getCreated();
+	}
 
 	public Long getId() {
 		return id;
 	}
-
 
 
 	public void setId(Long id) {
@@ -65,11 +54,9 @@ public class Location implements Serializable{
 	}
 
 
-
 	public String getName() {
 		return name;
 	}
-
 
 
 	public void setName(String name) {
@@ -77,11 +64,9 @@ public class Location implements Serializable{
 	}
 
 
-
 	public String getDimension() {
 		return dimension;
 	}
-
 
 
 	public void setDimension(String dimension) {
@@ -89,13 +74,9 @@ public class Location implements Serializable{
 	}
 
 
-
-
-
 	public String getUrl() {
 		return url;
 	}
-
 
 
 	public void setUrl(String url) {
@@ -103,44 +84,13 @@ public class Location implements Serializable{
 	}
 
 
-
 	public Instant getCreated() {
 		return created;
 	}
 
 
-
 	public void setCreated(Instant created) {
 		this.created = created;
 	}
-
-
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(created, id);
-	}
-
-
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Location other = (Location) obj;
-		return Objects.equals(created, other.created) && Objects.equals(id, other.id);
-	}
-
-
-
 	
-	
-	
-	
-
 }
-
