@@ -23,7 +23,7 @@ import com.sesatech.apirickymorty.entities.enums.StatusEnum;
 
 
 @Entity
-@Table(name = "tb_characters")
+@Table(name = "tb_character1")
 public class Character implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
@@ -41,12 +41,13 @@ public class Character implements Serializable{
 	private String origin;
 	
 	@ManyToMany
-	@JoinTable(name= "tb_characters_location",
-	       joinColumns = @JoinColumn(name= "characters_id"),
-	       inverseJoinColumns = @JoinColumn(name = "location_id")				
+	@JoinTable(name= "tb_character1_location",
+	       joinColumns = @JoinColumn(name= "character1_id"),
+	       inverseJoinColumns = @JoinColumn(name = "location_id")			
 			)	
 	Set<Location> locations = new HashSet<>();
 	
+	@Column(columnDefinition = "TEXT")
 	private String imgUrl;
 	
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
@@ -58,7 +59,7 @@ public class Character implements Serializable{
 
 
 	public Character(String id, String name, StatusEnum status, String species, GenderEnum gender, String origin,
-			String imgUrl, Instant created) {
+			String imgUrl, Instant date) {
 		
 		this.id = id;
 		this.name = name;
@@ -154,7 +155,7 @@ public class Character implements Serializable{
 	}
 
 
-	public void setCreated(Instant created) {
+	public void setDate(Instant created) {
 		this.created = created;
 	}
 

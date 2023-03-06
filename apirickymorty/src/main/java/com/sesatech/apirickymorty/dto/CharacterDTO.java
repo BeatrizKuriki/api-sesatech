@@ -2,7 +2,9 @@ package com.sesatech.apirickymorty.dto;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -22,20 +24,21 @@ public class CharacterDTO implements Serializable{
 	private GenderEnum gender;
 	private String origin;
 	
-    Set<Location> locations = new HashSet<>();
+   
 	
 	private String imgUrl;
 	
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
-	private Instant created;	
+	private Instant date;	
 	
+	private List<LocationDTO> locations = new ArrayList<>();
 	
 	public CharacterDTO() {		
 	}
 
 
 	public CharacterDTO(String id, String name, StatusEnum status, String species, GenderEnum gender, String origin,
-			String imgUrl, Instant created) {
+			String imgUrl, Instant date) {
 		
 		this.id = id;
 		this.name = name;
@@ -44,8 +47,10 @@ public class CharacterDTO implements Serializable{
 		this.gender = gender;
 		this.origin = origin;
 		this.imgUrl = imgUrl;
-		this.created = created;
+		this.date = date;
 	}
+	
+
 
 
 
@@ -109,14 +114,11 @@ public class CharacterDTO implements Serializable{
 	}
 
 
-	public Set<Location> getLocations() {
+	public List<LocationDTO> getLocations() {
 		return locations;
 	}
 
 
-	public void setLocations(Set<Location> locations) {
-		this.locations = locations;
-	}
 
 
 	public String getImgUrl() {
@@ -129,13 +131,13 @@ public class CharacterDTO implements Serializable{
 	}
 
 
-	public Instant getCreated() {
-		return created;
+	public Instant getDate() {
+		return date;
 	}
 
 
-	public void setCreated(Instant created) {
-		this.created = created;
+	public void setDate(Instant date) {
+		this.date = date;
 	}
 	
 	
