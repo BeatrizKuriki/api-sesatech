@@ -33,4 +33,15 @@ public class LocationService {
 		return new LocationDTO(entity);		
 		
 	}
+
+	@Transactional
+	public LocationDTO insert(LocationDTO dto) {
+		Location entity = new Location();
+		entity.setName(dto.getName());
+		entity.setDimension(dto.getDimension());
+		entity.setUrl(dto.getUrl());
+		entity.setCreated(dto.getCreated());
+		entity = repository.save(entity);			
+		return new LocationDTO(entity);
+	}
 }
