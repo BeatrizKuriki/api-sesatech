@@ -9,6 +9,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 
+import com.sesatech.apirickymorty.entities.Character;
 import com.sesatech.apirickymorty.entities.Location;
 import com.sesatech.apirickymorty.entities.enums.GenderEnum;
 import com.sesatech.apirickymorty.entities.enums.StatusEnum;
@@ -22,36 +23,46 @@ public class CharacterDTO implements Serializable{
 	private StatusEnum status;
 	private String species;
 	private GenderEnum gender;
-	private String origin;
-	
-   
-	
+	private String origin;		
+	private Object location;	
 	private String imgUrl;
 	
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant created;	
 	
-	private List<LocationDTO> locations = new ArrayList<>();
+	
 	
 	public CharacterDTO() {		
 	}
 
 
+
 	public CharacterDTO(String id, String name, StatusEnum status, String species, GenderEnum gender, String origin,
-			String imgUrl, Instant created) {
-		
+			String location, String imgUrl, Instant created) {
+	
 		this.id = id;
 		this.name = name;
 		this.status = status;
 		this.species = species;
 		this.gender = gender;
 		this.origin = origin;
+		this.location = location;
 		this.imgUrl = imgUrl;
 		this.created = created;
 	}
 	
-
-
+	public CharacterDTO(Character entity) {
+		this.id = entity.getId();
+		this.name = entity.getName();
+		this.status = entity.getStatus();
+		this.species = entity.getSpecies();
+		this.gender = entity.getGender();
+		this.origin = entity.getOrigin();
+		this.location = entity.getLocation();
+		this.imgUrl = entity.getImgUrl();
+		this.created = entity.getCreated();
+		
+	}
 
 
 
@@ -60,9 +71,11 @@ public class CharacterDTO implements Serializable{
 	}
 
 
+
 	public void setId(String id) {
 		this.id = id;
 	}
+
 
 
 	public String getName() {
@@ -70,18 +83,15 @@ public class CharacterDTO implements Serializable{
 	}
 
 
+
 	public void setName(String name) {
 		this.name = name;
 	}
 
 
+
 	public StatusEnum getStatus() {
 		return status;
-	}
-
-
-	public void setStatus(StatusEnum status) {
-		this.status = status;
 	}
 
 
@@ -90,9 +100,11 @@ public class CharacterDTO implements Serializable{
 	}
 
 
+
 	public void setSpecies(String species) {
 		this.species = species;
 	}
+
 
 
 	public GenderEnum getGender() {
@@ -100,14 +112,11 @@ public class CharacterDTO implements Serializable{
 	}
 
 
-	public void setGender(GenderEnum gender) {
-		this.gender = gender;
-	}
-
 
 	public String getOrigin() {
 		return origin;
 	}
+
 
 
 	public void setOrigin(String origin) {
@@ -115,10 +124,16 @@ public class CharacterDTO implements Serializable{
 	}
 
 
-	public List<LocationDTO> getLocations() {
-		return locations;
+
+	public Object getLocation() {
+		return location;
 	}
 
+
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
 
 
 
@@ -127,9 +142,11 @@ public class CharacterDTO implements Serializable{
 	}
 
 
+
 	public void setImgUrl(String imgUrl) {
 		this.imgUrl = imgUrl;
 	}
+
 
 
 	public Instant getCreated() {
@@ -137,13 +154,10 @@ public class CharacterDTO implements Serializable{
 	}
 
 
+
 	public void setCreated(Instant created) {
 		this.created = created;
-	}
-	
-	
-	
-	
+	}	
 	
 	
 

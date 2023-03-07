@@ -2,17 +2,18 @@ package com.sesatech.apirickymorty.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -32,10 +33,12 @@ public class Location implements Serializable{
 	
 
 	
-	//@OneToMany(mappedBy = "character", cascade = CascadeType.ALL)
-	//private List<Character> residents = new ArrayList<>();
-	//@ElementCollection
-	//private Collection residents;
+	@ManyToMany
+	@JoinTable(name= "tb_location_character1",
+    joinColumns = @JoinColumn(name= "location_id"),
+    inverseJoinColumns = @JoinColumn(name = "character1_id")			
+		)	
+     Set<Character> residents = new HashSet<>();
 	
 	private String url;
 	
@@ -58,10 +61,15 @@ public class Location implements Serializable{
 	
 		this.id = id;
 		this.name = name;
-		this.dimension = dimension;
-		//this.residents = residents;
+		this.dimension = dimension;	
 		this.url = url;
 		this.created = created;
+	}
+
+
+
+	public Set<Character> getResidents() {
+		return residents;
 	}
 
 

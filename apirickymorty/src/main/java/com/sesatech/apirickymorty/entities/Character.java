@@ -2,9 +2,9 @@ package com.sesatech.apirickymorty.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.HashSet;
+
 import java.util.Objects;
-import java.util.Set;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,9 +13,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import com.sesatech.apirickymorty.entities.enums.GenderEnum;
@@ -34,22 +31,12 @@ public class Character implements Serializable{
 	
 	@Enumerated(EnumType.STRING)
 	private StatusEnum status;
-	private String species;
-	
+	private String species;	
 	@Enumerated(EnumType.STRING)
 	private GenderEnum gender;
-	private String origin;
-	
-	@ManyToMany
-	@JoinTable(name= "tb_character1_location",
-	       joinColumns = @JoinColumn(name= "character1_id"),
-	       inverseJoinColumns = @JoinColumn(name = "location_id")			
-			)	
-	Set<Location> locations = new HashSet<>();
-	
-	@Column(columnDefinition = "TEXT")
-	private String imgUrl;
-	
+	private String origin;		
+	private String location;	
+	private String imgUrl;	
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant created;	
 	
@@ -58,18 +45,22 @@ public class Character implements Serializable{
 	}
 
 
+
+
 	public Character(String id, String name, StatusEnum status, String species, GenderEnum gender, String origin,
-			String imgUrl, Instant created) {
-		
+			String location, String imgUrl, Instant created) {
 		this.id = id;
 		this.name = name;
 		this.status = status;
 		this.species = species;
 		this.gender = gender;
 		this.origin = origin;
+		this.location = location;
 		this.imgUrl = imgUrl;
 		this.created = created;
 	}
+
+
 
 
 	public String getId() {
@@ -97,11 +88,6 @@ public class Character implements Serializable{
 	}
 
 
-	public void setStatus(StatusEnum status) {
-		this.status = status;
-	}
-
-
 	public String getSpecies() {
 		return species;
 	}
@@ -116,11 +102,7 @@ public class Character implements Serializable{
 		return gender;
 	}
 
-
-	public void setGender(GenderEnum gender) {
-		this.gender = gender;
-	}
-
+	
 
 	public String getOrigin() {
 		return origin;
@@ -132,13 +114,9 @@ public class Character implements Serializable{
 	}
 
 
-	public Set<Location> getLocations() {
-		return locations;
+	public Object getLocations() {
+		return location;
 	}
-
-
-	
-
 
 	public String getImgUrl() {
 		return imgUrl;
@@ -177,6 +155,15 @@ public class Character implements Serializable{
 		Character other = (Character) obj;
 		return Objects.equals(id, other.id);
 	}
+
+
+	public Object getLocation() {
+		return location;
+	}
+
+
+
+
 	
 	
 	

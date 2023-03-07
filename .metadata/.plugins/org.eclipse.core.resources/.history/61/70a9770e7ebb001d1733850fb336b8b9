@@ -1,0 +1,5 @@
+package com.sesatech.apirickymorty.entities.enums;
+
+public enum GenderEnum {
+
+}

@@ -2,6 +2,9 @@ package com.sesatech.apirickymorty.dto;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 
@@ -14,7 +17,7 @@ public class LocationDTO implements Serializable{
 	private String name;
 	private String dimension;
 	
-	//private List<Character> residents;
+	private List<CharacterDTO> residents = new ArrayList<>();
 	
 	private String url;
 	
@@ -42,6 +45,12 @@ public class LocationDTO implements Serializable{
 		this.dimension = entity.getDimension();
 		this.url = entity.getUrl();
 		this.created = entity.getCreated();
+	}
+	
+	public LocationDTO(Location entity, Set<Character> residents) {
+		this(entity);
+		residents.forEach(resident -> this.residents.add(new CharacterDTO()));
+		
 	}
 
 	public Long getId() {
@@ -92,5 +101,16 @@ public class LocationDTO implements Serializable{
 	public void setCreated(Instant created) {
 		this.created = created;
 	}
+
+
+	public List<CharacterDTO> getResidents() {
+		return residents;
+	}
+
+
+	public void setResidents(List<CharacterDTO> residents) {
+		this.residents = residents;
+	}
+	
 	
 }

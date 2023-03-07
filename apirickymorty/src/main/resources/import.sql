@@ -20,9 +20,15 @@ insert into tb_location(name,dimension, url, created) values('Gromflom Prime','R
 insert into tb_location(name,dimension, url, created) values('Earth (Replacement Dimension)','unknown','https://rickandmortyapi.com/api/location/20', NOW());
 
 
-insert into tb_character1(name, status, species, gender, origin, img_Url, created) values('Rick Sanchez', 'Alive', 'Human', 'Male','Earth','https://rickandmortyapi.com/api/character/avatar/1.jpeg', NOW());
-insert into tb_character1(name, status, species, gender, origin, img_Url, created) values('Morty Smith', 'Alive', 'Human', 'Male', 'Earth', 'https://rickandmortyapi.com/api/character/avatar/2.jpeg', NOW());
+insert into tb_character1(name, status, species, gender, origin,location, img_Url, created) values('Rick Sanchez', 'ALIVE', 'Human', 'MALE','Earth','Earth','https://rickandmortyapi.com/api/character/avatar/1.jpeg', NOW());
+insert into tb_character1(name, status, species, gender, origin,location, img_Url, created) values('Morty Smith', 'ALIVE', 'Human', 'MALE', 'Earth','Earth', 'https://rickandmortyapi.com/api/character/avatar/2.jpeg', NOW());
 
-INSERT INTO tb_character1_location (character1_id, location_id) VALUES (1, 1);
-INSERT INTO tb_character1_location (character1_id, location_id) VALUES (2, 1);
+INSERT INTO tb_location_character1(location_id,character1_id) values(1, 1);
+INSERT INTO tb_location_character1(location_id,character1_id) values(1, 2);
+INSERT INTO tb_location_character1(location_id,character1_id) values(2, 2);
+INSERT INTO tb_location_character1(location_id,character1_id) values(2, 1);
+INSERT INTO tb_location_character1(location_id,character1_id) values(3, 1);
+INSERT INTO tb_location_character1(location_id,character1_id) values(3, 2);
+
+
 
