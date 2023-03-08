@@ -1,9 +1,0 @@
-package com.sesatech.apirickymorty.entities.enums;
-
-public class StatusEnum {
-	UNKNOWN,
-	ALIVE,
-	DEAD,
-	
-
-}
