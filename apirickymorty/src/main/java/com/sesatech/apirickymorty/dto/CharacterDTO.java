@@ -4,10 +4,13 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 
 import com.sesatech.apirickymorty.entities.Character;
+import com.sesatech.apirickymorty.entities.Local;
+import com.sesatech.apirickymorty.entities.Origin;
 import com.sesatech.apirickymorty.entities.enums.GenderEnum;
 import com.sesatech.apirickymorty.entities.enums.StatusEnum;
 
@@ -27,10 +30,6 @@ public class CharacterDTO implements Serializable{
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant created;	
 	
-	
-	
-	public CharacterDTO() {		
-	}
 
 
 
@@ -55,6 +54,15 @@ public class CharacterDTO implements Serializable{
 		this.created = entity.getCreated();
 		
 	}
+	
+	public CharacterDTO(Character entity, List<Origin> origin) {
+		this(entity);
+		origin.forEach(element -> this.origin.add(new OriginDTO(element)));				
+	}
+
+
+
+	
 
 
 

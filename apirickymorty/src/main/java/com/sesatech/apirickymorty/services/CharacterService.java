@@ -1,6 +1,7 @@
 package com.sesatech.apirickymorty.services;
 
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
@@ -15,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sesatech.apirickymorty.dto.CharacterDTO;
 import com.sesatech.apirickymorty.entities.Character;
+import com.sesatech.apirickymorty.entities.Origin;
 import com.sesatech.apirickymorty.repositories.CharacterRepository;
 import com.sesatech.apirickymorty.services.exceptions.DataBaseException;
 import com.sesatech.apirickymorty.services.exceptions.ResourceNotFoundException;
@@ -30,13 +32,14 @@ public class CharacterService {
 	public Page<CharacterDTO> findAllPaged(PageRequest pageRequest) {
 		Page<Character> list = repository.findAll(pageRequest);
 		return list.map(x -> new CharacterDTO(x));
+		
 	}
 
 	@Transactional(readOnly = true)
 	public CharacterDTO findById(Long id) {
 		Optional<Character> obj = repository.findById(id);
 		Character entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found."));
-		return new CharacterDTO(entity);
+		return new CharacterDTO(entity, (List<Origin>) entity.getOrigin());
 
 	}
 

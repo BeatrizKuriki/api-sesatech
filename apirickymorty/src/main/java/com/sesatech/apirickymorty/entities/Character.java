@@ -2,7 +2,9 @@ package com.sesatech.apirickymorty.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -45,7 +47,7 @@ public class Character implements Serializable{
     joinColumns = @JoinColumn(name= "character1_id"),
     inverseJoinColumns = @JoinColumn(name = "local_id")			
 		)	
-     Set<Local> local = new HashSet<>();
+     List<Local> local = new ArrayList<>();
 	
 	
 	
@@ -56,7 +58,8 @@ public class Character implements Serializable{
     joinColumns = @JoinColumn(name= "character1_id"),
     inverseJoinColumns = @JoinColumn(name = "origin_id")			
 		)	
-     Set<Origin> origin = new HashSet<>();
+	  List<Origin> origin = new ArrayList<>();
+	
 	
 	
 	private String imgUrl;	
@@ -125,24 +128,22 @@ public class Character implements Serializable{
 
 	
 
-	public Set<Origin> getOrigin() {
-		return origin;
+	public List<Origin> getOrigin() {
+		return (List<Origin>) origin;
 	}
 	
-	public Set<Local> getLocal() {
-		return local;
-	}	
+	//public Set<Local> getLocal() {
+		//return local;
+	//}	
 
-	public void setLocation(Set<Local> local) {
-		this.local = local;
-	}
-
-
+	//public void setLocation(Set<Local> local) {
+		//this.local = local;
+	//}
 
 
-	public void setOrigin(Set<Origin> origin) {
-		this.origin = origin;
-	}
+
+
+	
 
 
 

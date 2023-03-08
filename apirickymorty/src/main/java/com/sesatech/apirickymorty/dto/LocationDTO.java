@@ -47,11 +47,11 @@ public class LocationDTO implements Serializable{
 		this.created = entity.getCreated();
 	}
 	
-	public LocationDTO(Location entity, Set<Character> residents) {
-		this(entity);
-		residents.forEach(resident -> this.residents.add(new CharacterDTO()));
+	//public LocationDTO(Location entity, Set<Character> residents) {
+		//this(entity);
+		//residents.forEach(resident -> this.residents.add(new CharacterDTO()));
 		
-	}
+	//}
 
 	public Long getId() {
 		return id;
