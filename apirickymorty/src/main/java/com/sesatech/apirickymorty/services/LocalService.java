@@ -1,6 +1,5 @@
 package com.sesatech.apirickymorty.services;
 
-
 import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
@@ -13,61 +12,61 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.sesatech.apirickymorty.dto.CharacterDTO;
-import com.sesatech.apirickymorty.entities.Character;
-import com.sesatech.apirickymorty.repositories.CharacterRepository;
+import com.sesatech.apirickymorty.dto.LocalDTO;
+import com.sesatech.apirickymorty.dto.OriginDTO;
+import com.sesatech.apirickymorty.entities.Local;
+import com.sesatech.apirickymorty.entities.Origin;
+import com.sesatech.apirickymorty.repositories.LocalRepository;
 import com.sesatech.apirickymorty.services.exceptions.DataBaseException;
 import com.sesatech.apirickymorty.services.exceptions.ResourceNotFoundException;
 
 @Service
-public class CharacterService {
+public class LocalService {
+	
 	@Autowired
-	private CharacterRepository repository;
-
-
-
+	private LocalRepository repository;
+	
+	
+	
 	@Transactional(readOnly = true)
-	public Page<CharacterDTO> findAllPaged(PageRequest pageRequest) {
-		Page<Character> list = repository.findAll(pageRequest);
-		return list.map(x -> new CharacterDTO(x));
+	public Page<LocalDTO> findAllPaged(PageRequest pageRequest) {
+		Page<Local> list = repository.findAll(pageRequest);
+		return list.map(x -> new LocalDTO(x));
 	}
 
 	@Transactional(readOnly = true)
-	public CharacterDTO findById(Long id) {
-		Optional<Character> obj = repository.findById(id);
-		Character entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found."));
-		return new CharacterDTO(entity);
+	public LocalDTO findById(Long id) {
+		Optional<Local> obj = repository.findById(id);
+		Local entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found."));
+		return new LocalDTO(entity);
 
+	}
+	
+	@Transactional
+	public LocalDTO insert(LocalDTO dto) {
+		Local entity = new Local();
+		entity.setName(dto.getName());		
+		entity.setUrl(dto.getUrl());		
+		entity = repository.save(entity);			
+		return new LocalDTO(entity);
 	}
 
 	@Transactional
-	public CharacterDTO insert(CharacterDTO dto) {
-		Character entity = new Character();
-		entity.setName(dto.getName());
-		entity.setSpecies(dto.getSpecies());		
-		entity.setImgUrl(dto.getImgUrl());
-		entity = repository.save(entity);	
-		return new CharacterDTO(entity);		
-		
-	}
-
-	@Transactional
-	public CharacterDTO update(Long id, CharacterDTO dto) {
+	public LocalDTO update(Long id, LocalDTO dto) {
 		try {
-		Character entity = repository.getOne(id);
-		entity.setName(dto.getName());
-		entity.setSpecies(dto.getSpecies());		
-		entity.setImgUrl(dto.getImgUrl());		
+		Local entity = repository.getOne(id);
+		entity.setName(dto.getName());		
+		entity.setUrl(dto.getUrl());	
 		entity = repository.save(entity);		
-		return new CharacterDTO(entity);
-	    }
+		return new LocalDTO(entity);
+		}
 		catch(EntityNotFoundException e) {
 			throw new ResourceNotFoundException("Id not found" + id);
 			
+		}
+	
 	}
-}
-	
-	
+
 	public void delete(Long id) {
 		try {
 		repository.deleteById(id);
@@ -82,4 +81,5 @@ public class CharacterService {
 		
 	}
 	
+
 }
