@@ -18,7 +18,7 @@ public class CharacterDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	
-	private String id;
+	private Long id;
 	private String name;
 	private StatusEnum status;
 	private String species;
@@ -37,7 +37,7 @@ public class CharacterDTO implements Serializable{
 
 
 
-	public CharacterDTO(String id, String name, StatusEnum status, String species, GenderEnum gender, String origin,
+	public CharacterDTO(Long id, String name, StatusEnum status, String species, GenderEnum gender, String origin,
 			String location, String imgUrl, Instant created) {
 	
 		this.id = id;
@@ -66,13 +66,13 @@ public class CharacterDTO implements Serializable{
 
 
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
 
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

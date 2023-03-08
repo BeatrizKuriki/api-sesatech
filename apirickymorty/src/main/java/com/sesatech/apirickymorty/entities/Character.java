@@ -26,7 +26,7 @@ public class Character implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String id;
+	private Long id;
 	private String name;
 	
 	@Enumerated(EnumType.STRING)
@@ -47,7 +47,7 @@ public class Character implements Serializable{
 
 
 
-	public Character(String id, String name, StatusEnum status, String species, GenderEnum gender, String origin,
+	public Character(Long id, String name, StatusEnum status, String species, GenderEnum gender, String origin,
 			String location, String imgUrl, Instant created) {
 		this.id = id;
 		this.name = name;
@@ -63,12 +63,12 @@ public class Character implements Serializable{
 
 
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
