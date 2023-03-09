@@ -109,46 +109,30 @@ $ git checkout main
 <br>Caminho local: http://localhost:8080/locations/{id}
 ------------------------------
 
-<h3>✏️ Exemplo de Json para criação de Cliente:<br></h3>
+<h3>✏️ Exemplo de Json para criação de Personagem:<br></h3>
 
-![image](https://user-images.githubusercontent.com/104280692/213899057-770d4a27-417f-4ccb-94d2-1c7c66905e2a.png)
+![image](https://github.com/BeatrizKuriki/assetsDesafioTecnico/blob/main/JSONCriaPersonagem.png)
 
-<h3>✏️ Exemplo de Json para Criação de Imóvel:<br></h3>
+<h3>✏️ Exemplo de Json para Atualização de personagem:<br></h3>
 
-![image](https://user-images.githubusercontent.com/104280692/213899141-154d563c-753d-4b06-af44-7c8de996d64a.png)
+![image](https://github.com/BeatrizKuriki/assetsDesafioTecnico/blob/main/JSONUpdatePersonagem.png)
 
-<h3>✏️ Exemplo de Json para criação de Contrato:<br></h3>
+<h3>✏️ Exemplo de Json para criação de Local:<br></h3>
 
-![image](https://user-images.githubusercontent.com/104280692/213900448-3a83df3b-f487-4218-9e31-c83ee43fee62.png)
+![image](https://github.com/BeatrizKuriki/assetsDesafioTecnico/blob/main/JsonCriaLocal.png)
+
+<h3>✏️ Exemplo de Json para atualização de Local:<br></h3>
+
+![image](https://github.com/BeatrizKuriki/assetsDesafioTecnico/blob/main/JSONUpdateLocal.png)
 
 
 
-<h2 align="center">:camera_flash: Screenshots <a name="id06"></a></h2>
+<h2 align="center">:camera_flash: Dificuldades na execução do projeto <a name="id06"></a></h2>
 
-<p>Imagem 1 - Desktop: Página Inicial</p>
-<p align="center"><img src="" width="800px"></p>
+<p>Os campos location e origin foram criandos como Strings contendo apenas um valor e não um objeto, porque ao tentar criar um objeto com eles utilizando o relacionamento muitos para muitos, como mostra a figura abaixo, não era possível fazer atualizações e criações de novas entitades por motivos de violação de integridade por causa da chave estrangeira.</p>
+<p>Acredito que o problema seja o tipo de mapeamento utilizado, cheguei a fazer algumas pesquisas para solucionar esse obstáculo mas restaram infrutíferas.</p>
+<p align="center"><img src="https://github.com/BeatrizKuriki/assetsDesafioTecnico/blob/main/telaMapeamento.png" width="800px"></p>
 <br>
-
-<p>Imagem 2 - Desktop: Página de busca</p>
-<p align="center"><img src="" width="800px"></p>
-<br>
-
-<p>Imagem 3 - Desktop: Página individual do personagem</p>
-<p align="center"><img src="" width="800px"></p>
-<br>
-
-<p>Imagem 4 - Mobile: Página Inicial</p>
-<p align="center"><img src="" width="200px"></p>
-<br>
-
-<p>Imagem 5 - Mobile: Página de busca</p>
-<p align="center"><img src="" width="200px"></p>
-<br>
-
-<p>Imagem 6 - Mobile: Página individual do personagem</p>
-<p align="center"><img src="" width="200px"></p>
-<br>
-
 
 
 
