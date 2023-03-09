@@ -22,8 +22,8 @@ insert into tb_location(name,dimension, url, created) values('Earth (Replacement
 
 
 
-insert into tb_character1(name, status, species, gender, img_Url, created) values('Rick Sanchez', 'ALIVE', 'Human', 'MALE','https://rickandmortyapi.com/api/character/avatar/1.jpeg', NOW());
-insert into tb_character1(name, status, species, gender,img_Url, created) values('Morty Smith', 'ALIVE', 'Human', 'MALE','https://rickandmortyapi.com/api/character/avatar/2.jpeg', NOW());
+insert into tb_character1(name, status, species, gender,origin,location, img_Url, created) values('Rick Sanchez', 'ALIVE', 'Human', 'MALE','Earth (Replacement Dimension)','https://rickandmortyapi.com/api/location/1','https://rickandmortyapi.com/api/character/avatar/1.jpeg', NOW());
+insert into tb_character1(name, status, species, gender,origin,location, img_Url, created) values('Morty Smith', 'ALIVE', 'Human', 'MALE','Venzenulon 7', 'https://rickandmortyapi.com/api/location/7','https://rickandmortyapi.com/api/character/avatar/2.jpeg', NOW());
 
 INSERT INTO tb_location_character1(location_id,character1_id) values(1, 1);
 INSERT INTO tb_location_character1(location_id,character1_id) values(1, 2);
@@ -32,20 +32,9 @@ INSERT INTO tb_location_character1(location_id,character1_id) values(2, 1);
 INSERT INTO tb_location_character1(location_id,character1_id) values(3, 1);
 INSERT INTO tb_location_character1(location_id,character1_id) values(3, 2);
 
-insert into tb_origin(name,url) values('Earth','https://rickandmortyapi.com/api/location/20');
-insert into tb_origin(name,url) values('Earth','https://rickandmortyapi.com/api/location/1');
-insert into tb_origin(name,url) values('Earth (Replacement Dimension)','https://rickandmortyapi.com/api/location/2');
 
 
-insert into tb_local(name,url) values('Earth','https://rickandmortyapi.com/api/location/20');
-insert into tb_local(name,url) values('Earth','https://rickandmortyapi.com/api/location/1');
-insert into tb_local(name,url) values('Earth (Replacement Dimension)','https://rickandmortyapi.com/api/location/2');
 
-INSERT INTO tb_character1_origin(character1_id, origin_id) values(1, 1);
-INSERT INTO tb_character1_origin(character1_id, origin_id) values(2, 2);
-
-INSERT INTO tb_character1_local(character1_id, local_id) values(1, 1);
-INSERT INTO tb_character1_local(character1_id, local_id) values(2, 2);
 
 
 

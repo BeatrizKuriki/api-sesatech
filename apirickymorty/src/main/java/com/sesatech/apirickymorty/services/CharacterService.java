@@ -7,7 +7,6 @@ import java.util.Optional;
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -16,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sesatech.apirickymorty.dto.CharacterDTO;
 import com.sesatech.apirickymorty.entities.Character;
-import com.sesatech.apirickymorty.entities.Origin;
 import com.sesatech.apirickymorty.repositories.CharacterRepository;
 import com.sesatech.apirickymorty.services.exceptions.DataBaseException;
 import com.sesatech.apirickymorty.services.exceptions.ResourceNotFoundException;
@@ -39,7 +37,7 @@ public class CharacterService {
 	public CharacterDTO findById(Long id) {
 		Optional<Character> obj = repository.findById(id);
 		Character entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found."));
-		return new CharacterDTO(entity, (List<Origin>) entity.getOrigin());
+		return new CharacterDTO(entity);
 
 	}
 
@@ -47,7 +45,11 @@ public class CharacterService {
 	public CharacterDTO insert(CharacterDTO dto) {
 		Character entity = new Character();
 		entity.setName(dto.getName());
-		entity.setSpecies(dto.getSpecies());		
+		entity.setStatusEnum(dto.getStatus());
+		entity.setSpecies(dto.getSpecies());
+		entity.setOrigin(dto.getOrigin());
+		entity.setLocation(dto.getLocation());
+		entity.setGenderEnum(dto.getGender());
 		entity.setImgUrl(dto.getImgUrl());
 		entity = repository.save(entity);	
 		return new CharacterDTO(entity);		
@@ -59,7 +61,11 @@ public class CharacterService {
 		try {
 		Character entity = repository.getOne(id);
 		entity.setName(dto.getName());
-		entity.setSpecies(dto.getSpecies());		
+		entity.setStatusEnum(dto.getStatus());
+		entity.setSpecies(dto.getSpecies());
+		entity.setOrigin(dto.getOrigin());
+		entity.setLocation(dto.getLocation());
+		entity.setGenderEnum(dto.getGender());
 		entity.setImgUrl(dto.getImgUrl());		
 		entity = repository.save(entity);		
 		return new CharacterDTO(entity);
@@ -78,10 +84,7 @@ public class CharacterService {
 		catch (EmptyResultDataAccessException e) {
 			throw new ResourceNotFoundException("Id not found" + id);
 		}
-		catch (DataIntegrityViolationException e) {
-			throw new DataBaseException("Integrity violation");			
-		}
-		
+	
 		
 	}
 	

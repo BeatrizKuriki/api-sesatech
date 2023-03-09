@@ -2,7 +2,8 @@ package com.sesatech.apirickymorty.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -38,7 +39,7 @@ public class Location implements Serializable{
     joinColumns = @JoinColumn(name= "location_id"),
     inverseJoinColumns = @JoinColumn(name = "character1_id")			
 		)	
-     Set<Character> residents = new HashSet<>();
+     List<Character> residents = new ArrayList<>();
 	
 	private String url;
 	
@@ -68,7 +69,7 @@ public class Location implements Serializable{
 
 
 
-	public Set<Character> getResidents() {
+	public List<Character> getResidents() {
 		return residents;
 	}
 

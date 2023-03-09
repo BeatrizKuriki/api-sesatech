@@ -4,10 +4,8 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-
 import javax.persistence.Column;
-
+import com.sesatech.apirickymorty.entities.Character;
 import com.sesatech.apirickymorty.entities.Location;
 
 public class LocationDTO implements Serializable{
@@ -47,12 +45,13 @@ public class LocationDTO implements Serializable{
 		this.created = entity.getCreated();
 	}
 	
-	//public LocationDTO(Location entity, Set<Character> residents) {
-		//this(entity);
-		//residents.forEach(resident -> this.residents.add(new CharacterDTO()));
+	public LocationDTO(Location entity, List<Character> residents) {
+		this(entity);
+		residents.forEach(element -> this.residents.add(new CharacterDTO(element)));		
 		
-	//}
-
+	}
+	
+	
 	public Long getId() {
 		return id;
 	}

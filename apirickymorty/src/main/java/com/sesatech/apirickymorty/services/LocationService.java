@@ -1,6 +1,7 @@
 package com.sesatech.apirickymorty.services;
 
 
+
 import java.util.Optional;
 
 
@@ -16,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sesatech.apirickymorty.dto.LocationDTO;
 import com.sesatech.apirickymorty.entities.Location;
+
 import com.sesatech.apirickymorty.repositories.LocationRepository;
 import com.sesatech.apirickymorty.services.exceptions.DataBaseException;
 import com.sesatech.apirickymorty.services.exceptions.ResourceNotFoundException;
@@ -36,7 +38,7 @@ public class LocationService {
 	public LocationDTO findById(Long id) {
 		Optional<Location> obj = repository.findById(id);
 		Location entity = obj.orElseThrow(()-> new ResourceNotFoundException("Entity not found."));
-		return new LocationDTO(entity);		
+		return new LocationDTO(entity,entity.getResidents());		
 		
 	}
 
@@ -56,7 +58,7 @@ public class LocationService {
 		Location entity = repository.getOne(id);
 		entity.setName(dto.getName());
 		entity.setDimension(dto.getDimension());
-		entity.setUrl(dto.getUrl());	
+		entity.setUrl(dto.getUrl());		
 		entity = repository.save(entity);		
 		return new LocationDTO(entity);
 		}

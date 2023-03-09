@@ -2,22 +2,17 @@ package com.sesatech.apirickymorty.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
-import java.util.Set;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import com.sesatech.apirickymorty.entities.enums.GenderEnum;
@@ -39,29 +34,8 @@ public class Character implements Serializable{
 	private String species;	
 	@Enumerated(EnumType.STRING)
 	private GenderEnum gender;
-	
-	
-	
-	@ManyToMany
-	@JoinTable(name= "tb_character1_local",
-    joinColumns = @JoinColumn(name= "character1_id"),
-    inverseJoinColumns = @JoinColumn(name = "local_id")			
-		)	
-     List<Local> local = new ArrayList<>();
-	
-	
-	
-	
-	
-	@ManyToMany
-	@JoinTable(name= "tb_character1_origin",
-    joinColumns = @JoinColumn(name= "character1_id"),
-    inverseJoinColumns = @JoinColumn(name = "origin_id")			
-		)	
-	  List<Origin> origin = new ArrayList<>();
-	
-	
-	
+	private String Location;
+	private String Origin;	
 	private String imgUrl;	
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant created;	
@@ -110,6 +84,11 @@ public class Character implements Serializable{
 	public StatusEnum getStatus() {
 		return status;
 	}
+	
+	public void setStatusEnum(StatusEnum status) {
+		this.status = status;
+		
+	}
 
 
 	public String getSpecies() {
@@ -122,30 +101,37 @@ public class Character implements Serializable{
 	}
 
 
+	
+	public void setGenderEnum(GenderEnum gender) {
+		this.gender = gender;
+		
+	}
 	public GenderEnum getGender() {
 		return gender;
 	}
-
 	
-
-	public List<Origin> getOrigin() {
-		return (List<Origin>) origin;
+	public String getLocation() {
+		return Location;
 	}
-	
-	//public Set<Local> getLocal() {
-		//return local;
-	//}	
 
-	//public void setLocation(Set<Local> local) {
-		//this.local = local;
-	//}
+
+	public void setLocation(String location) {
+		Location = location;
+	}
 
 
 
 
-	
+	public String getOrigin() {
+		return Origin;
+	}
 
 
+
+
+	public void setOrigin(String origin) {
+		Origin = origin;
+	}
 
 
 	public String getImgUrl() {
@@ -186,6 +172,14 @@ public class Character implements Serializable{
 		return Objects.equals(id, other.id);
 	}
 
+
+
+
+	
+
+
+
+	
 
 
 
