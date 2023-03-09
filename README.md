@@ -103,9 +103,9 @@ $ git checkout main
 <br>Caminho local:  http://localhost:8080/locations
 - [x] **Exclusão de Local - DELETE:**
 <br>Caminho local: http://localhost:8080/locations/{id}
-- [X] **Atualização de Locais:**
+- [X] **Atualização de Locais - PUT:**
 <br>Caminho local: http://localhost:8080/locations/{id}
-- [X] **Buscar locais por ID:**
+- [X] **Buscar locais por ID - GET:**
 <br>Caminho local: http://localhost:8080/locations/{id}
 ------------------------------
 
