@@ -134,6 +134,9 @@ $ git checkout main
 <p align="center"><img src="https://github.com/BeatrizKuriki/assetsDesafioTecnico/blob/main/telaMapeamento.png" width="800px"></p>
 <br>
 
+<p align="center"><img src="https://github.com/BeatrizKuriki/assetsDesafioTecnico/blob/main/DeleteMostrandoErrodeViolatioIntegrity.png" width="800px"></p>
+<br>
+
 
 
 <br>
